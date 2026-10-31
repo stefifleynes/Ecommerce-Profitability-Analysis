@@ -15,18 +15,18 @@ Despite sustained top-line revenue expansion exceeding R$3.3M quarterly peaks, e
 
 ## Dashboard Architecture & Key Insights
 
-### 1. Summary (Executive Overview)
+### 1. Summary
 <img width="1322" height="742" alt="01_Summary" src="https://github.com/user-attachments/assets/07441553-e3bd-481e-947c-7d7db90f3115" />
 * **Macro Revenue vs. Profit Divergence:** Tracks quarterly revenue trajectories against net profit, proving that revenue growth from 2017 to 2018 masked stagnant profit margins (~20.1% overall margin).
 * **Freight Drag Warning Indicator:** Highlights an enterprise **14.21% Freight Drag Ratio**, consuming significant gross profit.
 
 ### 2. Logistics & Freight (Regional Drag Analysis)
-<img width="1130" height="652" alt="03_Category_Profitability" src="https://github.com/user-attachments/assets/8e949372-94c8-44ad-b1d4-3f85650dfc5b" />
+<img width="1140" height="667" alt="02_Logistics_and_Freight_Cost" src="https://github.com/user-attachments/assets/2ccc20c6-6d79-46e3-b58d-f2911b6bdf6a" />
 * **High Freight Cost Leakage:** Identifies **R$2.25M** in total freight expenditure across ~99K orders.
 * **Remote State Vulnerability:** Proves that distant northern/northeastern states (**RR, AP, AC, AM, RO**) suffer extreme shipping overhead where regional freight costs match or surpass net profits generated.
 
 ### 3. Category Profitability (Product Mix Dynamics)
-<img width="1140" height="667" alt="02_Logistics_and_Freight_Cost" src="https://github.com/user-attachments/assets/2ccc20c6-6d79-46e3-b58d-f2911b6bdf6a" />
+<img width="1130" height="652" alt="03_Category_Profitability" src="https://github.com/user-attachments/assets/8e949372-94c8-44ad-b1d4-3f85650dfc5b" />
 * **Core Margin Drivers:** Pinpoints top profit contributors spearheaded by high-value categories (`relogios_presentes`, `beleza_saude`).
 * **Volume vs. Profit Drag:** Uncovers high-volume, low-margin categories (`cama_mesa_banho`, `utilidades_domesticas`) that contribute high shipping drag relative to net profit.
 
