@@ -1,8 +1,6 @@
-# 🛒 Olist E-Commerce Analytics: Diagnosing Profit Margin Erosion
+# Olist E-Commerce Analytics: Diagnosing Profit Margin Erosion
 
-[![Power BI Desktop](https://img.shields.io/badge/Power%20BI-Desktop-yellow?style=flat&logo=powerbi)](https://powerbi.microsoft.com/)
-[![SQL Database](https://img.shields.io/badge/SQL-Data%20Extraction%20%26%20Querying-blue?style=flat&logo=postgresql)](https://www.postgresql.org/)
-[![Dataset](https://img.shields.io/badge/Dataset-Kaggle%20Olist-orange)](https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce)
+![Summary Overview](./01_Summary.png)
 
 ---
 
@@ -13,30 +11,68 @@ By combining relational SQL queries with an interactive multi-page Power BI dash
 
 ---
 
-## Dashboard Architecture & Visual Previews
-The Power BI solution is structured into three executive views designed for multi-layered operational analysis:
+## Technical Stack and Methodology
 
-### 1. Summary (Executive Overview)
-<img width="1322" height="742" alt="01_Summary" src="https://github.com/user-attachments/assets/ae28b065-bf1d-49fc-b8a3-2d464cff0b7d" />
-* **High-Level KPIs:** Tracks aggregate Total Revenue (R$15.84M), Net Profit (R$3.18M), overall Net Profit Margin (20.10%), Total Orders (99K), and enterprise Average Freight Cost.
-* **Macro Divergence:** Highlights quarterly trends demonstrating how profit margins stagnated despite accelerating top-line revenue growth from 2017 to 2018.
-
-### 2. Logistics & Freight (Regional Drag Analysis)
-<img width="1140" height="667" alt="02_Logistics_and_Freight_Cost" src="https://github.com/user-attachments/assets/0b9a4cdc-f055-4969-a126-713606597c3a" />
-* **Freight Cost Leakage:** Analyzes R$2.25M in total freight expenditures across the fulfillment network.
-* **Geographic Vulnerability:** Identifies state-level outliers (such as remote northern and northeastern regions) where shipping overhead heavily compresses net margins.
-
-### 3. Category Profitability (Product Mix Dynamics)
-<img width="1130" height="652" alt="03_Category_Profitability" src="https://github.com/user-attachments/assets/43bcbb49-2de0-4fae-84c6-219dd5a2af43" />
-* **Core Margin Drivers:** Pinpoints high-value product categories (such as watches, gifts, beauty, and health) that sustain the baseline profit margin.
-* **Volume vs. Profit Disconnect:** Uncovers high-volume categories (such as bed, bath, and housewares) that generate high gross volume but carry disproportionate fulfillment and handling drag.
+* **Database and Querying:** SQL for relational data extraction, joining multi-table schemas, aggregation, and pre-cleaning.
+* **Business Intelligence Tool:** Power BI Desktop (Olist_Profit_Erosion_Analysis.pbix) for star schema data modeling and visual reporting.
+* **Core Calculations:** Applied DAX dynamic measures to calculate Total Revenue, Total Freight Cost, Net Profit, Net Profit Margin, and Freight Drag Percentage across all transaction categories.
 
 ---
 
-## Technical Stack & Methodology
+## Dashboard Architecture and Previews
 
-* **Data Extraction & Pre-Cleaning (SQL):** Extracted, joined, and aggregated multi-table relational schemas (Orders, Order Items, Customers, Products, and Geolocation) to ensure clean transactional tracking.
-* **Data Modeling:** Built a robust star/snowflake schema in Power BI with properly configured relationships and cardinality.
-* **DAX Calculations:** Engineered custom dynamic measures for complex business metrics:
-  ```dax
-  Total Revenue = SUM('olist_order_items_dataset'[price])<img width="1322" height="742" alt="01_Summary" src="https://github.com/user-attachments/assets/b4c2efc6-ce75-4fd2-91b9-9e72967fd999" />
+### 1. Summary Dashboard (Executive Overview)
+<img width="1322" height="742" alt="01_Summary" src="https://github.com/user-attachments/assets/831e8593-8c41-4d34-9f90-230914f677ff" />
+
+The Summary page provides an executive view of overall business performance:
+* **Key Performance Indicators:** Tracks aggregate Total Revenue of R$15.84M, Net Profit of R$3.18M, overall Net Profit Margin of 20.10%, Total Orders of 99K, and Average Freight Cost of R$19.99 per order.
+* **Macro Divergence:** Features a line and bar chart tracking quarterly revenue trajectories against net profit performance, demonstrating how profit margins stagnated despite accelerating sales growth from 2017 to 2018.
+
+---
+
+### 2. Logistics and Freight Dashboard (Regional Drag Analysis)
+<img width="1140" height="667" alt="02_Logistics_and_Freight_Cost" src="https://github.com/user-attachments/assets/f713f441-cb9a-4d1f-a14f-320e0ffc9b75" />
+
+The Logistics page highlights cost leakage across regional fulfillment networks:
+* **Freight Spend Leakage:** Details total freight expenditures of R$2.25M across the entire enterprise fulfillment network.
+* **Regional Drag Analysis:** Pinpoints state-level shipping overhead, identifying remote northern and northeastern regions where freight costs heavily consume unit profit margins.
+
+---
+
+### 3. Category Profitability Dashboard (Product Mix Dynamics)
+<img width="1130" height="652" alt="03_Category_Profitability" src="https://github.com/user-attachments/assets/0f2d433e-6cc0-4538-a504-de057918f1c3" />
+
+The Category Profitability page evaluates product performance across sales channels:
+* **Profit Drivers:** Categorizes top net profit drivers led by high-value product lines such as watches, gifts, beauty, and health items.
+* **Volume Disconnect:** Uncovers high-volume items such as bed, bath, and housewares that generate large order counts but carry high volumetric shipping drag relative to their net margin contribution.
+
+---
+
+## Key Findings and Analytical Results
+
+1. **Revenue Expansion vs. Margin Compression**
+Enterprise revenue expanded to R$15.84M across 99K orders, reaching quarterly peaks over R$3.3M in 2018. However, net profit plateaued at R$3.18M, locking the overall net profit margin near 20.10% due to rising fulfillment spend.
+
+2. **Enterprise Freight Drag Impact**
+Total logistics costs reached R$2.25M, establishing an overall Freight Drag Ratio of 14.21%. The average freight cost per transaction stood at R$19.99, compressing unit economics on lower-priced merchandise.
+
+3. **Geographic Logistics Vulnerability**
+Distant northern and northeastern Brazilian states (specifically Roraima, Amapá, Acre, Amazonas, and Rondônia) exhibit extreme shipping overhead, where regional freight costs equal or surpass the net profit generated per order.
+
+4. **Product Mix Disconnect**
+Core profit drivers are concentrated in high-value categories. Conversely, high-volume categories generate high transaction counts but contribute disproportionate volumetric weight and shipping drag relative to their net margin contribution.
+
+---
+
+## Strategic Recommendations
+
+1. **Implement Tiered Regional Shipping and Surcharges**
+Establish minimum order values or distance-adjusted shipping surcharges for high-drag states (Roraima, Amapá, Acre, Amazonas, and Rondônia) to prevent long-haul logistics fees from eroding unit margins.
+
+2. **Optimize Fulfillment Hubs and Warehousing Network**
+Shift from a centralized fulfillment model toward secondary regional distribution hubs closer to high-density customer clusters to reduce long-haul transit fees and lower average per-order freight spend.
+
+3. **Rebalance Portfolio Mix and Promotional Strategy**
+Reallocate marketing acquisition spend toward high-margin categories such as watches, beauty, and health, while restructuring pricing models or carrier shipping contracts for heavy-weight, low-margin items.
+
+---
