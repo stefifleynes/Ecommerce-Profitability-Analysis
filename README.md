@@ -1,7 +1,5 @@
 # Olist E-Commerce Analytics: Diagnosing Profit Margin Erosion
 
-![Summary Overview](./01_Summary.png)
-
 ---
 
 ## Project Overview
