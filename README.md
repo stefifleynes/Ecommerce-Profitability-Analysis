@@ -1,38 +1,42 @@
-# Olist E-Commerce Analytics: Diagnosing Profit Margin Erosion
+# 🛒 Olist E-Commerce Analytics: Diagnosing Profit Margin Erosion
 
-## Project Executive Summary
-Despite sustained top-line revenue expansion exceeding R$3.3M quarterly peaks, enterprise net profitability experienced severe margin compression. This end-to-end data analytics solution combines relational SQL queries with Power BI modeling to uncover hidden operational cost leaks across regional logistics networks and product category mixes, delivering targeted strategic intervention points to recover bottom-line performance.
-
----
-
-## 🛠️ Data Architecture & Analytical Stack
-* **Database & Querying:** SQL (Relational data extraction, joining multi-table schemas, aggregation, and pre-cleaning)
-* **Business Intelligence Tool:** Power BI Desktop (`Olist_Profit_Erosion_Analysis.pbix`)
-* **Data Schema:** Star/Snowflake relational model linking Orders, Order Items, Customers, Product Translations, and Geolocation datasets
-* **Core DAX Calculations:** `Total Revenue`, `Net Profit`, `Net Profit Margin %`, `Total Orders`, `Total Freight Cost`, `Average Freight Cost`, `Freight Drag %`
+[![Power BI Desktop](https://img.shields.io/badge/Power%20BI-Desktop-yellow?style=flat&logo=powerbi)](https://powerbi.microsoft.com/)
+[![SQL Database](https://img.shields.io/badge/SQL-Data%20Extraction%20%26%20Querying-blue?style=flat&logo=postgresql)](https://www.postgresql.org/)
+[![Dataset](https://img.shields.io/badge/Dataset-Kaggle%20Olist-orange)](https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce)
 
 ---
 
-## Dashboard Architecture & Key Insights
+## 📌 Project Overview
+As e-commerce operations scale, top-line revenue expansion can frequently mask hidden profitability leaks. This end-to-end data analytics project investigates the Brazilian Olist e-commerce dataset to diagnose why sustained revenue growth exceeding R$3.3M quarterly peaks failed to translate into proportional net profitability. 
 
-### 1. Summary
-<img width="1322" height="742" alt="01_Summary" src="https://github.com/user-attachments/assets/07441553-e3bd-481e-947c-7d7db90f3115" />
-* **Macro Revenue vs. Profit Divergence:** Tracks quarterly revenue trajectories against net profit, proving that revenue growth from 2017 to 2018 masked stagnant profit margins (~20.1% overall margin).
-* **Freight Drag Warning Indicator:** Highlights an enterprise **14.21% Freight Drag Ratio**, consuming significant gross profit.
+By combining **relational SQL data querying** with an interactive **multi-page Power BI dashboard**, this project uncovers structural cost compression drivers, specifically highlighting regional freight drag and high-volume, low-margin product categories.
+
+---
+
+## 📂 Dashboard Architecture & Visual Previews
+The Power BI solution is structured into three executive views designed for multi-layered operational analysis:
+
+### 1. Summary (Executive Overview)
+<img width="1322" height="742" alt="01_Summary" src="https://github.com/user-attachments/assets/fb198d29-b175-4771-93fe-c4f866f59c4a" />
+* **High-Level KPIs:** Tracks aggregate `Total Revenue` (R$15.84M), `Net Profit` (R$3.18M), overall `Net Profit Margin %` (20.10%), `Total Orders` (99K), and enterprise `Average Freight Cost`.
+* **Macro Divergence:** Highlights quarterly trends demonstrating how profit margins stagnated despite accelerating top-line revenue growth from 2017 to 2018.
 
 ### 2. Logistics & Freight (Regional Drag Analysis)
-<img width="1140" height="667" alt="02_Logistics_and_Freight_Cost" src="https://github.com/user-attachments/assets/2ccc20c6-6d79-46e3-b58d-f2911b6bdf6a" />
-* **High Freight Cost Leakage:** Identifies **R$2.25M** in total freight expenditure across ~99K orders.
-* **Remote State Vulnerability:** Proves that distant northern/northeastern states (**RR, AP, AC, AM, RO**) suffer extreme shipping overhead where regional freight costs match or surpass net profits generated.
+<img width="1140" height="667" alt="02_Logistics_and_Freight_Cost" src="https://github.com/user-attachments/assets/cfe444e2-f215-49ba-b804-a58344875642" />
+* **Freight Cost Leakage:** Analyzes R$2.25M in total freight expenditures across the fulfillment network.
+* **Geographic Vulnerability:** Identifies state-level outliers (such as remote northern/northeastern regions) where shipping overhead heavily compresses net margins.
 
 ### 3. Category Profitability (Product Mix Dynamics)
-<img width="1130" height="652" alt="03_Category_Profitability" src="https://github.com/user-attachments/assets/8e949372-94c8-44ad-b1d4-3f85650dfc5b" />
-* **Core Margin Drivers:** Pinpoints top profit contributors spearheaded by high-value categories (`relogios_presentes`, `beleza_saude`).
-* **Volume vs. Profit Drag:** Uncovers high-volume, low-margin categories (`cama_mesa_banho`, `utilidades_domesticas`) that contribute high shipping drag relative to net profit.
+<img width="1130" height="652" alt="03_Category_Profitability" src="https://github.com/user-attachments/assets/f55dfc33-f289-4a5f-b8a1-43bcf7220191" />
+* **Core Margin Drivers:** Pinpoints high-value product categories (`relogios_presentes`, `beleza_saude`) that sustain the baseline profit margin.
+* **Volume vs. Profit Disconnect:** Uncovers high-volume categories (`cama_mesa_banho`, `utilidades_domesticas`) that generate high gross volume but carry disproportionate fulfillment and handling drag.
 
 ---
 
-## Strategic Recommendations
-1. **Tiered Regional Shipping & Surcharges:** Implement minimum order thresholds or distance-adjusted shipping surcharges for remote states (RR, AP, AC, AM, RO) to stop logistics spend from eroding unit economics.
-2. **Fulfillment Center Relocation:** Establish regional warehousing hubs closer to key consumer hubs to lower the per-order average shipping cost.
-3. **Product Mix Optimization:** Reallocate marketing acquisition spend toward high-margin drivers (`relogios_presentes`, `beleza_saude`) while restructuring pricing on high-weight, low-margin items.
+## 🛠️ Technical Stack & Methodology
+
+* **Data Extraction & Pre-Cleaning (SQL):** Extracted, joined, and aggregated multi-table relational schemas (Orders, Order Items, Customers, Products, and Geolocation) to ensure clean transactional tracking.
+* **Data Modeling:** Built a robust star/snowflake schema in Power BI with properly configured relationships and cardinality.
+* **DAX Calculations:** Engineered custom dynamic measures for complex business metrics:
+  ```dax
+  Total Revenue = SUM('olist_order_items_dataset'[price])
